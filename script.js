@@ -13,7 +13,7 @@ Array.from(buttons).forEach((button) => {
 
         let lastChar = string[string.length-1];
 
-        if(e.target.innerHTML == '=')
+        if(btnText == '=')
         {
             if(lastChar === '+' || lastChar === '-' || lastChar === '/' || lastChar === '%' || lastChar ==='*')
             {
@@ -21,17 +21,21 @@ Array.from(buttons).forEach((button) => {
             }
             else
             {
-            string = +eval(string).toFixed(4);
+            string = +eval(string).toFixed(3);
             input.value = string;
             resultDisplayed = true;
             }
         }
-        else if(e.target.innerHTML == 'DEL')
-        {
+        else if(btnText == 'DEL')
+        {   
+            if(resultDisplayed === true)
+                {
+                    resultDisplayed = false;
+                }
             string = String(string).substring(0, string.length-1);
             input.value = string;
         }
-        else if (e.target.innerHTML == 'AC')
+        else if (btnText == 'AC')
         {
             string = '';
             input.value = string;
@@ -41,18 +45,24 @@ Array.from(buttons).forEach((button) => {
             if(resultDisplayed == true && btnText !== '+' && btnText !== '-' && btnText !== '/' && btnText !== '%' && btnText !== '*' )
             {
                 string = '';
-                string = string + e.target.innerHTML;
+                string = string + btnText;
                 input.value = string;
                 resultDisplayed = false;
 
             }
-            else if (btnText === '+' || btnText === '-' || btnText === '/' || btnText === '%' || btnText === '*')
+            else if (btnText === '+' || btnText === '-' || btnText === '/' || btnText === '%' || btnText === '*' || btnText === '.')
             {   
-                if(lastChar === '+' || lastChar === '-' || lastChar === '/' || lastChar === '%' || lastChar ==='*')
+
+                if(lastChar === '+' || lastChar === '-' || lastChar === '/' || lastChar === '%' || lastChar ==='*' || lastChar === '.')
                 {   if (lastChar !== '-')
                     {
                     string = string.substring(0, string.length-1) + btnText;
                     input.value = string;
+                    }
+                    else if(lastChar === '.')
+                    {
+                        // do nothing
+                        console.log('. was inputt')
                     }
     
                 }
@@ -65,20 +75,30 @@ Array.from(buttons).forEach((button) => {
                     }
                     // Do Nothing
                 }
+                else if(btnText === '%')
+                {
+                    string = string + '*(0.01)';
+                    string = +eval(string).toFixed(3);
+                    input.value = string;
+                }
+
                 else 
                 {
-                    string = string +  e.target.innerHTML;
+                    string = string +  btnText;
                     input.value = string;
                     resultDisplayed = false;
                 }
             }   
             else
             {
-                string = string +  e.target.innerHTML;
+                string = string +  btnText;
                 input.value = string;
                 resultDisplayed = false;
             }
         }
     })
-})
+    
+}
+)
+
 
