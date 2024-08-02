@@ -9,7 +9,7 @@
 body
 {
     box-sizing: border-box;
-    
+    -webkit-tap-highlight-color:  rgba(255,       255, 255, 0);     
     background-color: #c3cbdc;
     background-image: linear-gradient(147deg, #c3c6cd 0%, #fbfdfe 74%);
 
