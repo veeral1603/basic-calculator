@@ -16,7 +16,7 @@ body
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100svh;
 
     font-family: 'Poppins' , sans-serif;
 }
@@ -116,4 +116,18 @@ button:active
     text-decoration: none;
     color: rgb(253, 112, 12);
     font-weight: 600;
+}
+
+@media screen and (max-width: 576px)
+{
+
+    .footer
+    {
+        display: none;
+    }
+    body
+    {
+        padding: 0 2rem;
+    }
+    
 }
